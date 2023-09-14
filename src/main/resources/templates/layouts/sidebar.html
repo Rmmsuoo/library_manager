@@ -35,6 +35,13 @@
 					</form>
 				</li>
 			</ul>
+			<ul sec:authorize="isAuthenticated()" class="nav">
+				<li class="user panel-body">
+					<div sec:authorize="isAuthenticated()">
+						<p><span sec:authentication="name"></span>さんがログイン中</p>
+					</div>
+				</li>
+			</ul>
 		</div>
 	</div>
 </body>

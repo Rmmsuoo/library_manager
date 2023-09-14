@@ -27,12 +27,19 @@
 					</a>
 				</li>
 				<li class="link">
-					<form action="">
-						<button>
+					<form th:action="@{/logout}" method="post">
+						<button type="submit">
 							<i class="ti-back-left"></i>
 							Logout
 						</button>
 					</form>
+				</li>
+			</ul>
+			<ul sec:authorize="isAuthenticated()" class="nav">
+				<li class="user panel-body">
+					<div sec:authorize="isAuthenticated()">
+						<p><span sec:authentication="name"></span>さんがログイン中</p>
+					</div>
 				</li>
 			</ul>
 		</div>

@@ -30,20 +30,39 @@ public class LibraryService {
 	public Library findById(Integer id) {
 		return this.libraryRepository.findById(id).orElse(null);
 	}
-	public void borrowBook(Integer id,String returnDueDateString,LoginUser loginUser) {
-		 Library library = libraryRepository.findById(id).orElseThrow(); // 仮の書籍取得メソッド
-	        library.setUserId(loginUser.getId()); // 仮のユーザーID設定メソッド
-	        libraryRepository.save(library); // 仮の書籍情報更新メソッド
 
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-	        LocalDateTime returnDueDate = LocalDateTime.parse(returnDueDateString);
-	        Log log = new Log();
-	        log.setLibraryId(id);
-	        log.setUserId(loginUser.getId());
-	        log.setRentDate(LocalDateTime.now());
-	        log.setReturnDueDate(returnDueDate);
-	        log.setReturnDate(null);
+	public void borrowBook(Integer id, String returnDueDateString, LoginUser loginUser) {
+		Library library = libraryRepository.findById(id).orElseThrow(); // 仮の書籍取得メソッド
+		library.setUserId(loginUser.getId()); // 仮のユーザーID設定メソッド
+		libraryRepository.save(library); // 仮の書籍情報更新メソッド
 
-	        logRepository.save(log);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+		LocalDateTime returnDueDate = LocalDateTime.parse(returnDueDateString);
+		Log log = new Log();
+		log.setLibraryId(id);
+		log.setUserId(loginUser.getId());
+		log.setRentDate(LocalDateTime.now());
+		log.setReturnDueDate(returnDueDate);
+		log.setReturnDate(null);
+
+		logRepository.save(log);
+	}
+
+	public void returnBook(Integer id, LoginUser loginUser) {
+		Library library = libraryRepository.findById(id).orElseThrow();
+		library.setUserId(0);
+		libraryRepository.save(library);
+
+		Log lastLog = logRepository.findTopByLibraryIdAndUserIdOrderByRentDateDesc(id, loginUser.getId());
+		LocalDateTime returnDueDate = lastLog.getReturnDueDate();
+		
+		Log log = new Log();
+		log.setLibraryId(id);
+		log.setUserId(loginUser.getId());
+		log.setRentDate(LocalDateTime.now());
+		log.setReturnDueDate(returnDueDate);
+		log.setReturnDate(LocalDateTime.now());
+
+		logRepository.save(log);
 	}
 }

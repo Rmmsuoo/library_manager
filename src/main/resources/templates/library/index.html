@@ -44,7 +44,7 @@
 											</form>
 											<form th:if="${library.userId==loggedInUserId}"
 												th:action="@{/library/return}" th:name="${_csrf.parameterName}"
-												th:value="${_csrf.token}" method="get">
+												th:value="${_csrf.token}" method="post">
 												<input type="hidden" name="id" th:value="${library.id}">
 												<input type="submit" th:value="return" class="btn btn-danger">
 											</form>

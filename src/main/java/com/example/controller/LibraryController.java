@@ -48,4 +48,13 @@ public class LibraryController {
 		libraryService.borrowBook(id, returnDueDate + "T00:00:00", loginUser);
 		return "redirect:/library";
 	}
+
+	@PostMapping("return")
+	public String returnBook(
+			@RequestParam("id") Integer id,
+			@AuthenticationPrincipal LoginUser loginUser) {
+		libraryService.returnBook(id, loginUser);
+		return "redirect:/library";
+	}
+
 }

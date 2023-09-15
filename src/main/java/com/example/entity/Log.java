@@ -1,6 +1,5 @@
 package com.example.entity;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -29,7 +28,7 @@ public class Log {
 	private LocalDateTime rentDate;
 
 	@Column(name = "RETURN_DATE")
-	private Date returnDate;
+	private LocalDateTime returnDate;
 
 	@Column(name = "RETURN_DUE_DATE")
 	private LocalDateTime returnDueDate;
@@ -66,12 +65,12 @@ public class Log {
 		this.rentDate = localDateTime;
 	}
 
-	public Date getReturnDate() {
+	public LocalDateTime getReturnDate() {
 		return returnDate;
 	}
 
-	public void setReturnDate(Date returnDate) {
-		this.returnDate = returnDate;
+	public void setReturnDate(LocalDateTime localDateTime) {
+		this.returnDate = localDateTime;
 	}
 
 	public LocalDateTime getReturnDueDate() {

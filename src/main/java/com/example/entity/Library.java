@@ -21,14 +21,6 @@ public class Library {
 	@Column(name = "NAME")
 	private String name;
 
-	public Integer id() {
-		return this.id;
-	}
-
-	public void id(Integer id) {
-		this.id = id;
-	}
-
 	public Integer getId() {
 		return this.id;
 	}
@@ -47,4 +39,12 @@ public class Library {
 
 	@Column(name = "USER_ID")
 	private Integer userId;
+
+	public Integer getUserId() {
+		return this.userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 }

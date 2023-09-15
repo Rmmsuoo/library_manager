@@ -26,9 +26,10 @@ public class LibraryController {
 	}
 
 	@GetMapping
-	public String index(Model model) {
+	public String index(Model model, @AuthenticationPrincipal LoginUser loginUser) {
 		List<Library> libraries = this.libraryService.findAll();
 		model.addAttribute("libraries", libraries);
+		model.addAttribute("loggedInUserId", loginUser.getId());
 		return "library/index";
 	}
 
@@ -47,5 +48,4 @@ public class LibraryController {
 		libraryService.borrowBook(id, returnDueDate + "T00:00:00", loginUser);
 		return "redirect:/library";
 	}
-
 }

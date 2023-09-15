@@ -32,7 +32,7 @@ public class LibraryService {
 	}
 	public void borrowBook(Integer id,String returnDueDateString,LoginUser loginUser) {
 		 Library library = libraryRepository.findById(id).orElseThrow(); // 仮の書籍取得メソッド
-	        library.setId(loginUser.getId()); // 仮のユーザーID設定メソッド
+	        library.setUserId(loginUser.getId()); // 仮のユーザーID設定メソッド
 	        libraryRepository.save(library); // 仮の書籍情報更新メソッド
 
 	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");

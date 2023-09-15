@@ -45,7 +45,7 @@ public class Log {
 		return libraryId;
 	}
 
-	public void setLibrary(Integer libraryId) {
+	public void setLibraryId(Integer libraryId) {
 		this.libraryId = libraryId;
 	}
 

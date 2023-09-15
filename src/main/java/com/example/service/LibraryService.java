@@ -20,4 +20,8 @@ public class LibraryService {
 	public List<Library> findAll() {
 		return this.libraryRepository.findAll();
 	}
+
+	public Library findById(Integer id) {
+		return this.libraryRepository.findById(id).orElse(null);
+	}
 }

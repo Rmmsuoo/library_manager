@@ -30,6 +30,10 @@ public class LibraryService {
 	public Library findById(Integer id) {
 		return this.libraryRepository.findById(id).orElse(null);
 	}
+	
+	public List<Log> findLogsByUserId(Integer userId) {
+        return logRepository.findByUserIdOrderByRentDateDesc(userId);
+    }
 
 	public void borrowBook(Integer id, String returnDueDateString, LoginUser loginUser) {
 		Library library = libraryRepository.findById(id).orElseThrow(); // 仮の書籍取得メソッド

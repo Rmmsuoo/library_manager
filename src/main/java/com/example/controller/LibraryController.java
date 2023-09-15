@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.entity.Library;
+import com.example.entity.Log;
 import com.example.service.LibraryService;
 import com.example.service.LoginUser;
 
@@ -55,6 +56,15 @@ public class LibraryController {
 			@AuthenticationPrincipal LoginUser loginUser) {
 		libraryService.returnBook(id, loginUser);
 		return "redirect:/library";
+	}
+
+	@GetMapping("/history")
+	public String history(Model model, @AuthenticationPrincipal LoginUser loginUser) {
+		List<Log> userBorrowHistory=libraryService.findLogsByUserId(loginUser.getId());
+		
+		model.addAttribute("history", userBorrowHistory);
+		
+		return "/library/borrowHistory";
 	}
 
 }

@@ -31,6 +31,10 @@ public class LoginUser implements UserDetails {
 		return user.getName();
 	}
 
+	public Integer getId() {
+		return user.getId();
+	}
+
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;

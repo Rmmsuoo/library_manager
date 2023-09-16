@@ -36,4 +36,15 @@ public class Library {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Column(name = "USER_ID")
+	private Integer userId;
+
+	public Integer getUserId() {
+		return this.userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 }
